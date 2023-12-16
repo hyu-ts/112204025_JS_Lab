@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Comparison with Buttons</title>
+  <style>
+    body {
+      text-align: center;
+      font-size: 24px;
+      transition: background-color 0.5s;
+    }
+
+    .button-container {
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .color-button {
+      width: 150px;
+      height: 60px;
+      margin-right: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 18px;
+      transition: transform 0.3s;
+    }
+
+    .color-button:hover {
+      transform: scale(1.1);
+    }
+
+    #result {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body onload="getFirstInput()">
+  <h1>Buttons</h1>
+  <div class="button-container">
+    <button class="color-button" style="background-color: #F69;" onclick="showFirstInput()">show num1</button>
+    <button class="color-button" style="background-color: #0BD;" onclick="showSecondInput()">show num2</button>
+    <button class="color-button" style="background-color: #F72;" onclick="getFirstInput()">reset num1</button>
+    <button class="color-button" style="background-color: #07D;" onclick="getSecondInput()">reset num2</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    let firstInput;
+    let secondInput;
+
+    function getFirstInput() {
+      firstInput = prompt('Enter the first number:', '');
+      if (firstInput !== null && secondInput == null) {
+        getSecondInput();
+      } else if (firstInput !== null && secondInput !== null){
+        compareNumbers();
+      }
+    }
+
+    function getSecondInput() {
+      secondInput = prompt('Enter the second number:', '');
+      if (secondInput !== null) {
+        compareNumbers();
+      }
+    }
+
+    function compareNumbers() {
+      const resultDiv = document.getElementById('result');
+      if (parseInt(firstInput) > parseInt(secondInput)) {
+        document.body.style.backgroundColor = 'lightblue';
+        resultDiv.innerHTML = firstInput + ' > ' + secondInput;
+      } else if (parseInt(secondInput) > parseInt(firstInput)) {
+        document.body.style.backgroundColor = 'orange';
+        resultDiv.innerHTML = secondInput + ' > ' + firstInput;
+      } else {
+        document.body.style.backgroundColor = 'lightyellow';
+        resultDiv.innerHTML = secondInput + ' == ' + firstInput;
+      }
+    }
+
+    function showFirstInput() {
+      alert('First Input: ' + firstInput);
+    }
+
+    function showSecondInput() {
+      alert('Second Input: ' + secondInput);
+    }
+  </script>
+</body>
+
+</html>
